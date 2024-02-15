@@ -1,32 +1,29 @@
 import React, { useState } from 'react'
 
-function Square () {
-  const [value, setValue] = useState(null)
-
-  function handleClick () {
-    setValue('X')
-  }
-
-  return <button className="square" onClick={handleClick}>{value}</button>
+// eslint-disable-next-line react/prop-types
+function Square ({ value }) {
+  return <button className="square" >{value}</button>
 }
 
 export default function Board () {
+  // eslint-disable-next-line no-unused-vars
+  const [squares, setSquares] = useState(Array(9).fill(null))
   return (
     <>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={[squares[1]]} />
+        <Square value={[squares[2]]} />
+        <Square value={[squares[3]]} />
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={[squares[4]]} />
+        <Square value={[squares[5]]} />
+        <Square value={[squares[6]]} />
       </div>
       <div className="board-row">
-        <Square />
-        <Square />
-        <Square />
+        <Square value={[squares[7]]} />
+        <Square value={[squares[8]]} />
+        <Square value={[squares[9]]} />
       </div>
     </>
   )
