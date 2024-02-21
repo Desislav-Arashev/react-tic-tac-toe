@@ -22,6 +22,19 @@ function CalculateWinner(squares) {
 }
 
 export default function Board() {
+  // eslint-disable-next-line no-unused-vars
+  const [squares, setSquares] = useState(Array(9).fill(null))
+  const [xIsNext, setXIsNext] = useState(true)
+
+  const winner = CalculateWinner(squares)
+  let status;
+  if (winner) {
+    status = 'Winner: ' + winner
+  }
+  else {
+    status = 'Next player: ' + (xIsNext ? 'X' : 'O')
+  }
+
   function handleClick(i) {
     if (squares[i] || CalculateWinner(squares)) {
       return;
@@ -40,11 +53,9 @@ export default function Board() {
     setXIsNext(!xIsNext)
   }
 
-  // eslint-disable-next-line no-unused-vars
-  const [squares, setSquares] = useState(Array(9).fill(null))
-  const [xIsNext, setXIsNext] = useState(true)
   return (
     <>
+      <div className="status">{status}</div>
       <div className="board-row">
         <Square value={[squares[1]]} onSquareClick={() => handleClick(1)} />
         <Square value={[squares[2]]} onSquareClick={() => handleClick(2)} />
